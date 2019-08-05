@@ -1,0 +1,5 @@
+---
+- hosts: all
+  tasks: 
+   - name: Disable Selinux on Servers
+     command: /bin/echo "Hello World" > test

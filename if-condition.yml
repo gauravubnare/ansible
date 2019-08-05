@@ -1,0 +1,9 @@
+---
+- hosts: all 
+  become: yes
+  tasks: 
+  - name: If OS is Redhat Install Apache
+    yum:
+     name: httpd
+     state: latest
+    when: ansible_os_family == "RedHat"

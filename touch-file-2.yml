@@ -1,0 +1,12 @@
+---
+- hosts: all
+  tasks:
+   - name: Create a File
+     file:
+       state: touch
+       path: /mnt/newfile
+   - name: 
+     lineinfile:
+       state: present
+       path: /mnt/newfile
+       line: Hostname={{ansible_hostname}}

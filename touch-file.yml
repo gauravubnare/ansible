@@ -1,0 +1,7 @@
+---
+- hosts: all
+  tasks:
+   - name: Create a Directory
+     file:
+       state: directory
+       path: /mnt/test123/new

@@ -1,0 +1,26 @@
+# This Ansible Playbook has Three Tasks :-
+# 1) Upload a File from local system to remote system with file permission 0755.
+# 2) Write Inside the file using ansible fact the host name for the servee.
+# 3) Run the script.
+# It is also creating debug logs to troubleshoot any errors in the scripts.
+---
+#host: all - This scripts will be executed on all the remote hosts present in the inventory file.
+- hosts: all
+  tasks: 
+  - name: Upload a file to the targets system
+  # This task uses copy module to copy file to remote host.
+    copy:
+     src: /etc/hosts.sh
+     dest: /mnt/hosts-new.sh
+     mode: 0755
+  - name: if line not there than add it
+  # This task uses lineinfile module to add a line inside the file.
+    lineinfile:
+     state: present
+     dest: /mnt/hosts-new.sh
+     line: HOST1={{ansible_hostname}}
+  - name: Run the script
+  # This task uses shell module to run the scipt on the remote host.
+    shell: /mnt/hosts-new.sh
+    register: output
+  - debug: msg="stdout={{output}}"

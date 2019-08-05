@@ -1,0 +1,9 @@
+---
+- hosts: all
+  tasks: 
+   - name: Ensure the default Apache port
+     lineinfile:
+      path: /etc/httpd/conf/httpd.conf
+      regexp: '^Listen '
+      insertafter: '^#Listen '
+      line: Listen 8089
